@@ -1,6 +1,8 @@
 package com.example.orderservice.jpa;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -18,7 +20,7 @@ public class OrderEntity implements Serializable {
     @Column(nullable = false, length = 120, unique = true)
     private String productId;
     @Column(nullable = false)
-    private String qty;
+    private Integer qty;
     @Column(nullable = false)
     private Integer unitPrice;
     @Column(nullable = false)
