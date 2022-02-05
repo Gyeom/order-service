@@ -21,7 +21,7 @@ import javax.transaction.Transactional;
 public class ControllerTestTemplate {
 
     @Autowired
-    protected MockMvc mvc;
+    protected MockMvc mockMvc;
 
     @Autowired
     protected WebApplicationContext ctx;
@@ -31,7 +31,7 @@ public class ControllerTestTemplate {
 
     @BeforeEach
     public void setUp() {
-        this.mvc = MockMvcBuilders.webAppContextSetup(ctx)
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx)
                 .addFilter(new CharacterEncodingFilter("UTF-8", true))
                 .build();
     }

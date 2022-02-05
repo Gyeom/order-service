@@ -27,14 +27,13 @@ class OrderControllerTest extends ControllerTestTemplate {
                 .build();
 
         // when
-        final ResultActions actions = mvc.perform(post("/order-service/{userId}/orders", USER_ID)
+        final ResultActions actions = mockMvc.perform(post("/{userId}/orders", USER_ID)
                         .content(objectMapper.writeValueAsString(requestOrder))
                         .contentType(MediaType.APPLICATION_JSON))
                         .andDo(print());
 
         // then
-        actions
-                .andExpect(status().isCreated())
+        actions.andExpect(status().isCreated())
                 .andDo(print());
     }
 
@@ -43,13 +42,12 @@ class OrderControllerTest extends ControllerTestTemplate {
     void getOrder() throws Exception{
 
         // given, when
-        final ResultActions actions = mvc.perform(get("/order-service/{userId}/orders", USER_ID)
+        final ResultActions actions = mockMvc.perform(get("/{userId}/orders", USER_ID)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print());
 
         // then
-        actions
-                .andExpect(status().isOk())
+        actions.andExpect(status().isOk())
                 .andDo(print());
     }
 }

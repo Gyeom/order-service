@@ -3,7 +3,6 @@ package com.example.orderservice.service;
 import com.example.orderservice.dto.OrderDto;
 import com.example.orderservice.jpa.OrderEntity;
 import com.example.orderservice.jpa.OrderRepository;
-import com.example.orderservice.vo.ResponseOrder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -32,10 +31,7 @@ public class OrderServiceImpl implements OrderService {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         OrderEntity orderEntity = mapper.map(orderDto, OrderEntity.class);
-
-        orderRepository.save(orderEntity);
-
-        return mapper.map(orderEntity, OrderDto.class);
+        return mapper.map(orderRepository.save(orderEntity), OrderDto.class);
     }
 
     @Override
