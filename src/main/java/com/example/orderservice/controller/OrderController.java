@@ -54,6 +54,8 @@ public class OrderController {
 
         OrderDto orderDto = mapper.map(orderDetails, OrderDto.class);
         orderDto.setUserId(userId);
+        orderDto.setOrderId(UUID.randomUUID().toString());
+        orderDto.setTotalPrice(orderDto.getQty() * orderDto.getUnitPrice());
 
         /* jpa */
         OrderDto createdOrder = orderService.createOrder(orderDto);

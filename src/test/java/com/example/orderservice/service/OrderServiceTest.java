@@ -36,14 +36,13 @@ class OrderServiceTest {
 
     @BeforeEach
     void setUp() {
-        orderDto = new OrderDto();
-        orderDto.setProductId(PRODUCT_ID);
-        orderDto.setQty(QTY);
-        orderDto.setUnitPrice(UNIT_PRICE);
-
-        // Using in OrderService
-        orderDto.setOrderId(ORDER_ID);
-        orderDto.setTotalPrice(orderDto.getQty() * orderDto.getUnitPrice());
+        orderDto = OrderDto.builder()
+                .orderId(ORDER_ID)
+                .productId(PRODUCT_ID)
+                .qty(QTY)
+                .unitPrice(UNIT_PRICE)
+                .totalPrice(QTY * UNIT_PRICE)
+                .build();
 
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
